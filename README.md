@@ -1,4 +1,4 @@
-[Geant4](https://cern.ch/geant4/), Geant4 is a toolkit for the simulation of the passage of particles through matter developed at CERN. It is popular in nuclear and particle phyiscs.
+[Geant4](https://cern.ch/geant4/) is a toolkit for the simulation of the passage of particles through matter developed at CERN. It is popular in nuclear and particle phyiscs.
 
 # Synopsis
 
