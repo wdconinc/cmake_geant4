@@ -19,11 +19,12 @@ cd geant${version}-build
 echo "Configuring geant${version}..."
 cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo \
  -DCMAKE_INSTALL_PREFIX=/usr/local/geant4/geant${version} \
+ -DGEANT4_BUILD_EXAMPLES=ON \
  -DGEANT4_USE_GDML=ON \
  -DGEANT4_INSTALL_DATA=ON \
  -DGEANT4_USE_QT=ON \
  -DGEANT4_USE_RAYTRACER_X11=ON \
- -DGEANT4_BUILD_MULTITHREADED=OFF \
+ -DGEANT4_BUILD_MULTITHREADED=ON \
  -DXERCESC_LIBRARY=/usr/lib/x86_64-linux-gnu/libxerces-c.so \
  ../geant${version}
 
