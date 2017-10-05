@@ -17,15 +17,24 @@ mkdir -p geant${version}-build
 cd geant${version}-build
 
 echo "Configuring geant${version}..."
-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo \
- -DCMAKE_INSTALL_PREFIX=/usr/local/geant4/geant${version} \
- -DGEANT4_BUILD_EXAMPLES=ON \
- -DGEANT4_USE_GDML=ON \
- -DGEANT4_INSTALL_DATA=ON \
- -DGEANT4_USE_QT=ON \
- -DGEANT4_USE_RAYTRACER_X11=ON \
+prefix=/usr/local/geant4/geant${version}
+cmake \
+ -DCMAKE_INSTALL_PREFIX=${prefix} \
+ -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+ -DBUILD_SHARED_LIBS=ON \
+ -DBUILD_STATIC_LIBS=ON \
+ -DGEANT4_BUILD_EXAMPLES=OFF \
  -DGEANT4_BUILD_MULTITHREADED=ON \
- -DXERCESC_LIBRARY=/usr/lib/x86_64-linux-gnu/libxerces-c.so \
+ -DGEANT4_INSTALL_DATA=ON \
+ -DGEANT4_USE_G3TOG4=ON \
+ -DGEANT4_USE_GDML=ON \
+ -DGEANT4_USE_QT=ON \
+ -DGEANT4_USE_XM=ON \
+ -DGEANT4_USE_OPENGL_X11=ON \
+ -DGEANT4_USE_RAYTRACER_X11=ON \
+ -DGEANT4_USE_SYSTEM_CLHEP=OFF \
+ -DGEANT4_USE_SYSTEM_EXPAT=ON \
+ -DGEANT4_USE_SYSTEM_ZLIB=ON \
  ../geant${version}
 
 j=`cat /proc/cpuinfo | grep processor | wc -l`
