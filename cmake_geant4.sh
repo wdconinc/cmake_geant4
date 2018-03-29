@@ -3,6 +3,12 @@
 version=$1
 origdir=`dirname $0`
 
+if [ $# -lt 2 ] ; then
+  CLHEP="-DGEANT4_USE_SYSTEM_CLHEP=OFF"
+else
+  CLHEP="-DGEANT4_USE_SYSTEM_CLHEP=ON -DCLHEP_LIBRARIES=/usr/local/clhep/clhep-$2/lib -DCLHEP_INCLUDE_DIRS=/usr/local/clhep/clhep-$2/include/CLHEP"
+fi
+
 echo "Downloading geant${version}.tar.gz..."
 until test -f geant${version}.tar.gz
 do wget http://geant4.cern.ch/support/source/geant${version}.tar.gz
@@ -32,9 +38,9 @@ cmake \
  -DGEANT4_USE_XM=ON \
  -DGEANT4_USE_OPENGL_X11=ON \
  -DGEANT4_USE_RAYTRACER_X11=ON \
- -DGEANT4_USE_SYSTEM_CLHEP=OFF \
  -DGEANT4_USE_SYSTEM_EXPAT=ON \
- -DGEANT4_USE_SYSTEM_ZLIB=ON \
+ -DGEANT4_USE_SYSTEM_ZLIB=OFF \
+ "$CLHEP" \
  ../geant${version}
 
 j=`cat /proc/cpuinfo | grep processor | wc -l`
