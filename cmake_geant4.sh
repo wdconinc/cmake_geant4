@@ -9,21 +9,21 @@ else
   CLHEP="-DGEANT4_USE_SYSTEM_CLHEP=ON -DCLHEP_LIBRARIES=/usr/local/clhep/clhep-$2/lib -DCLHEP_INCLUDE_DIRS=/usr/local/clhep/clhep-$2/include/CLHEP"
 fi
 
-echo "Downloading geant${version}.tar.gz..."
-until test -f geant${version}.tar.gz
-do wget http://cern.ch/geant4-data/releases/geant${version}.tar.gz
+echo "Downloading geant4-v${version}.tar.gz..."
+until test -f geant4-v${version}.tar.gz
+do wget https://gitlab.cern.ch/geant4/geant4/-/archive/v${version}/geant4-v${version}.tar.gz
 done
 
-echo "Unpacking geant${version}.tar.gz..."
-until test -d geant${version}
-do tar -zxvf geant${version}.tar.gz
+echo "Unpacking geant4-v${version}.tar.gz..."
+until test -d geant4-v${version}
+do tar -zxvf geant4-v${version}.tar.gz
 done
 
-mkdir -p geant${version}-build
-cd geant${version}-build
+mkdir -p geant4-v${version}-build
+cd geant4-v${version}-build
 
-echo "Configuring geant${version}..."
-prefix=/usr/local/geant4/geant${version}
+echo "Configuring geant4-v${version}..."
+prefix=/usr/local/geant4/geant4-v${version}
 cmake \
  -DCMAKE_INSTALL_PREFIX=${prefix} \
  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
@@ -41,7 +41,7 @@ cmake \
  -DGEANT4_USE_SYSTEM_EXPAT=ON \
  -DGEANT4_USE_SYSTEM_ZLIB=OFF \
  "$CLHEP" \
- ../geant${version}
+ ../geant4-v${version}
 
 j=`cat /proc/cpuinfo | grep processor | wc -l`
 echo "Make will use $j parallel jobs."
